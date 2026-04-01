@@ -154,3 +154,60 @@ body {
   from {opacity:0; transform:translateY(10px);}
   to {opacity:1; transform:translateY(0);}
 }
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* Make app flexible */
+.app {
+  width: 100%;
+  max-width: 380px;
+  height: 95vh;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .app {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    padding: 15px;
+  }
+
+  .profile h2 {
+    font-size: 14px;
+  }
+
+  .profile p {
+    font-size: 11px;
+  }
+
+  .task {
+    padding: 10px;
+  }
+
+  .input-area input {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .input-area button {
+    width: 50px;
+    font-size: 18px;
+  }
+}
+
+/* Improve scrolling */
+.tasks {
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.tasks::-webkit-scrollbar {
+  display: none;
+}
