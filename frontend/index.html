@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Neural Quad</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Header -->
+  <div class="profile">
+    <div class="avatar"></div>
+    <div>
+      <h2>The Neural Quad</h2>
+      <p id="task-count">You've got 0 tasks today</p>
+    </div>
+  </div>
+
+  <!-- Analytics -->
+  <div class="analytics">
+    <div class="stat">
+      <p>Total</p>
+      <h3 id="total-tasks">0</h3>
+    </div>
+    <div class="stat">
+      <p>Done</p>
+      <h3 id="completed-tasks">0</h3>
+    </div>
+    <div class="stat">
+      <p>Pending</p>
+      <h3 id="pending-tasks">0</h3>
+    </div>
+
+    <div class="progress-bar">
+      <div id="progress-fill"></div>
+    </div>
+
+    <p class="streak">🔥 Streak: <span id="streak">0</span> days</p>
+  </div>
+
+  <!-- Chart -->
+  <div class="chart">
+    <canvas id="chartCanvas"></canvas>
+  </div>
+
+  <!-- Tasks -->
+  <div class="tasks" id="task-list"></div>
+
+  <!-- Input -->
+  <div class="input-area">
+    <input type="text" id="task-input" placeholder="Add a new task..." />
+    <button id="add-btn">+</button>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

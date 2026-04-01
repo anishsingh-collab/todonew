@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #0d0d14;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app {
+  width: 340px;
+  height: 650px;
+  background: #171723;
+  border-radius: 25px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+}
+
+/* Profile */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff7b00, #ff00c8);
+}
+
+.profile h2 { color: #fff; font-size: 16px; }
+.profile p { color: #888; font-size: 12px; }
+
+/* Analytics */
+.analytics {
+  margin-top: 15px;
+  background: #1f1f2e;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.stat {
+  display: inline-block;
+  width: 32%;
+  text-align: center;
+}
+
+.stat p { font-size: 11px; color: #888; }
+.stat h3 { color: white; }
+
+.progress-bar {
+  height: 6px;
+  background: #2a2a3d;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+#progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#6a5cff,#9c52ff);
+  transition: 0.4s;
+}
+
+.streak {
+  margin-top: 8px;
+  color: #ffcc70;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Chart */
+.chart {
+  margin-top: 10px;
+  height: 80px;
+}
+
+/* Tasks */
+.tasks {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+.task {
+  background: #1f1f2e;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  animation: fadeIn 0.3s ease;
+  transition: 0.2s;
+}
+
+.task:hover {
+  background: #26263a;
+}
+
+.task-left {
+  display: flex;
+  gap: 10px;
+}
+
+.task span { color: white; }
+
+.task.completed span {
+  text-decoration: line-through;
+  color: #666;
+}
+
+/* Input */
+.input-area {
+  display: flex;
+  gap: 10px;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #1f1f2e;
+  color: white;
+}
+
+.input-area button {
+  width: 45px;
+  border-radius: 10px;
+  border: none;
+  background: #6a5cff;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.input-area button:hover {
+  transform: scale(1.05);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(10px);}
+  to {opacity:1; transform:translateY(0);}
+}
