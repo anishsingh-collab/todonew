@@ -8,15 +8,13 @@ const totalEl = document.getElementById("total-tasks");
 const completedEl = document.getElementById("completed-tasks");
 const pendingEl = document.getElementById("pending-tasks");
 const progressFill = document.getElementById("progress-fill");
-const streakEl = document.getElementById("streak");
 const taskCountEl = document.getElementById("task-count");
 
 let tasks = [];
 let history = [];
-let streak = 0;
 
 /* =========================
-   FETCH TASKS FROM BACKEND
+   FETCH TASKS
 ========================= */
 async function fetchTasks() {
   try {
@@ -29,7 +27,7 @@ async function fetchTasks() {
 }
 
 /* =========================
-   UPDATE TASK COUNT TEXT
+   UPDATE COUNT
 ========================= */
 function updateCount() {
   const count = tasks.length;
@@ -64,7 +62,7 @@ function renderTasks() {
       <button class="delete-btn">✕</button>
     `;
 
-    // ✅ TOGGLE
+    // TOGGLE
     div.querySelector("input").onclick = async () => {
       await fetch(`${BASE_URL}/tasks/${task.id}`, {
         method: "PUT"
@@ -72,7 +70,7 @@ function renderTasks() {
       fetchTasks();
     };
 
-    // ❌ DELETE
+    // DELETE
     div.querySelector(".delete-btn").onclick = async () => {
       div.style.transform = "scale(0.8)";
       div.style.opacity = "0";
@@ -92,7 +90,7 @@ function renderTasks() {
 }
 
 /* =========================
-   ANALYTICS SYSTEM
+   ANALYTICS
 ========================= */
 function updateAnalytics() {
   const total = tasks.length;
@@ -111,10 +109,12 @@ function updateAnalytics() {
 }
 
 /* =========================
-   MINI CHART
+   CHART
 ========================= */
 function updateChart(doneToday) {
   const canvas = document.getElementById("chartCanvas");
+  if (!canvas) return;
+
   const ctx = canvas.getContext("2d");
 
   canvas.width = 300;
@@ -141,32 +141,47 @@ function updateChart(doneToday) {
 }
 
 /* =========================
-   ADD TASK
+   ADD TASK (FIXED)
 ========================= */
 addBtn.onclick = async () => {
   const text = input.value.trim();
-  if (!text) return;
 
-  await fetch(`${BASE_URL}/tasks`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ text })
-  });
+  if (!text) {
+    alert("Enter a task first");
+    return;
+  }
 
-  input.value = "";
-  fetchTasks();
+  try {
+    console.log("Sending task:", text);
+
+    const res = await fetch(`${BASE_URL}/tasks`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ text })
+    });
+
+    const data = await res.json();
+    console.log("Response:", data);
+
+    input.value = "";
+    fetchTasks();
+
+  } catch (err) {
+    console.error("Error:", err);
+    alert("Backend error");
+  }
 };
 
 /* =========================
-   ENTER KEY SUPPORT
+   ENTER KEY
 ========================= */
 input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") addBtn.click();
 });
 
 /* =========================
-   INITIAL LOAD
+   INIT
 ========================= */
 fetchTasks();
